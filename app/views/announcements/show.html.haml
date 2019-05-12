@@ -1,0 +1,25 @@
+.page_format{:style => " margin-left: 15px;"}
+
+.content
+  = render :partial => 'users/nav_bar', :locals => { :current_user => current_user }
+
+.content
+  = render :partial => 'users/flash_messages', :locals => { :flash => flash }
+
+%div.container.title-container
+  %h2= @announcement.title
+
+  %div.container
+    &nbsp
+    %p= @announcement.description
+
+  &nbsp
+
+%div.container
+  - if current_user.admin?
+    = link_to "Edit", edit_announcement_path(@announcement), class: %w[button btn btn-outline-success]
+    &nbsp &nbsp
+    = link_to "Delete", announcement_path(@announcement), method: :delete, data: { confirm: "Are you sure?" }, class: %w[button btn btn-outline-success]
+  &nbsp &nbsp &nbsp &nbsp
+  = link_to "Back", announcements_path, class: %w[button btn btn-outline-success]
+
