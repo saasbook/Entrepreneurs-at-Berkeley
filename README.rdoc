@@ -1,4 +1,4 @@
-== README
+== README 
 
 Link to our Web App: https://entrepreneurs-at-berkeley.herokuapp.com/
 
