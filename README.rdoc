@@ -72,14 +72,14 @@ The last 3 lines are environment variables required for anything to work.
       and (3) will be the app password generated through these steps (don't include the spaces shown in the app password at time of creation)
 
   if (1) is a "berkeley.edu" account and does have 2-Step Authentication
-    - then follow the steps 3-5 at https://berkeley.service-now.com/kb_view.do?sysparm_article=KB0010997
+    - then follow steps 3-5 at https://berkeley.service-now.com/kb_view.do?sysparm_article=KB0010997
       and (3) will be the bConnected Key generated through these steps (make sure the Key is readable as an environment variable ie. try "heroku config:set ENV_VAR=KeyValue" where KeyValue is your bConnected Key, and see that all of the characters are copied into the heroku environment variable. If not, you can generate new Keys until one is satisfiable as an environment variable)
 
-(4) is a string, and is the code required to register a regular account
+(4) will be the code required to register a regular account
 
-(5) is a string different from (4), and is the code required to register an admin account
+(5) must be different (4), and will be the code required to register an admin account
 
-(6) is a string different from both (4) and (5), and is the code required to register a super-admin account
+(6) must be different from both (4) and (5), and will be the code required to register a super-admin account
 
 In order to upload pictures locally, install imageMagick by following https://imagemagick.org/index.php
 
