@@ -60,7 +60,7 @@ The last 3 lines are environment variables required for anything to work.
 
 (1) is an existing email account that uses gmail as its underlying email service (ie. blank@gmail.com or blank@berkeley.edu)
 
-(2) is the domain to (1) (ie. "gmail.com" if (1) is blank@gmail.com or "berkeley.edu" if (1) is blank@berkley.edu)
+(2) is the domain to (1) (ie. "gmail.com" if (1) is blank@gmail.com or "berkeley.edu" if (1) is blank@berkeley.edu)
 
 (3) depends on the type of account of (1)
 
