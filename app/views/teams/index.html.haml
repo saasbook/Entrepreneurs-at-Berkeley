@@ -1,0 +1,33 @@
+.content
+  = render :partial => 'users/nav_bar', :locals => { :current_user => current_user }
+
+.content
+  = render :partial => 'users/flash_messages', :locals => { :flash => flash }
+
+%div.container.title-container
+  %h2 All Teams
+
+%div.container
+  = form_tag(team_create_path, :method => 'GET', class: %w[form form-inline my-2 my-lg-0]) do
+    = submit_tag "Create a Team", name: nil, class: %w[button btn btn-outline-success my-2 my-sm-0]
+  &nbsp
+
+%div.container
+  - @teams.each_slice(4) do |slice|
+    %div.row
+      - slice.each do |team|
+        %div.user-tile-wrapper.col-sm-12.col-md-3
+
+          %div.user-tile
+
+            %a.user-tile-link{:href => team_path(team)}
+              %div.user-tile-img{:style => "background-image: url('#{team.image.url}')"}
+
+                %div.user-tile-img-overlay
+                  %p= "More about #{team.name}"
+
+              %div.user-tile-info
+                %h4= "#{team.name}"
+                %p.leader= "Leader: #{team.leader.first} #{team.leader.last}"
+
+                %p.size= "Size: #{team.members.length}"

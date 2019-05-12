@@ -1,0 +1,21 @@
+.content
+  = render :partial => 'users/nav_bar', :locals => { :current_user => current_user }
+
+
+%ul#details
+  = @message
+
+- if current_user.admin?
+  %div.container{ align: "center" }
+    %h4 Edit Announcement
+    = render 'form'
+    &nbsp
+    = button_to "Cancel", announcements_path, class: %w[button btn btn-outline-success]
+- else
+  %div.ann-tile
+    %h3{ align: "center" } Restricted Access!
+    %a.ann-tile-link{:href => announcements_path}
+      %div.container{ align: "center"}
+        &nbsp
+        = button_to "Back", announcements_path, class: %w[button btn btn-outline-success]
+
