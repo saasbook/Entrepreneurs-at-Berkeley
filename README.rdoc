@@ -125,6 +125,10 @@ Then run:
 You can now visit your Heroku app.
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c5f81bf038b9608850ec8f9f4e1d154c9bf2960f
 {<img src="https://travis-ci.org/georgelzeng/EABWebsite-S19.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/georgelzeng/EABWebsite-S19]
 
 {<img src="https://api.codeclimate.com/v1/badges/bfc752df097bcfd919b4/maintainability" />}[https://codeclimate.com/github/georgelzeng/EABWebsite-S19/maintainability]
