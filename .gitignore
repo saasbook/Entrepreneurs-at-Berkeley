@@ -37,3 +37,6 @@ EAB_roster.xml
 
 # Ignore Procfile - it breaks heroku
 Procfile
+
+id_rsa
+heroku keys:add
