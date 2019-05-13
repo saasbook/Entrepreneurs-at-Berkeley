@@ -59,14 +59,11 @@ The first 4 lines are environment variables required for password-recovery-email
 
 The last 3 lines are environment variables required for anything to work.
 
-(1) is an existing email account that uses gmail as its underlying email service (ie. blank@gmail.com or blank@berkeley.edu)
+(1) is an existing email account that uses gmail as its underlying email service (ie. blank@gmail.com or blank@berkeley.edu) and uses some form of 2-Step authentication
 
 (2) is the domain to (1) (ie. "gmail.com" if (1) is blank@gmail.com or "berkeley.edu" if (1) is blank@berkeley.edu)
 
 (3) depends on the type of account of (1)
-
-  if (1) does not have 2-Step Authentication
-    - then (3) is the password to (1)
 
   if (1) is a "@gmail.com" account and does have 2-Step Authentication
     - then follow the steps at https://support.teamgate.com/hc/en-us/articles/115002064229-How-to-set-up-Outgoing-SMTP-email-settings-while-using-2-step-verification-in-Gmail-
