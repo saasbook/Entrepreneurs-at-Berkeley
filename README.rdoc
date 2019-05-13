@@ -43,8 +43,9 @@ To run Locally:
 After navigating to main directory of repo, run the following commands:
 
   $ bundle install --without production
+  $ bundle exec figaro install
 
-Then create the file config/application.yml and add the following lines (to create environment variables):
+Then navigate to config/application.yml and add the following lines (to create environment variables):
 
   SERVER_ADDRESS: smtp.gmail.com
   EMAIL_USERNAME: (1)
