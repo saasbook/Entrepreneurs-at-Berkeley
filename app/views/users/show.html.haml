@@ -1,0 +1,96 @@
+.page_format{:style => " margin-left: 15px;"}
+
+.content
+  = render :partial => 'users/nav_bar', :locals => { :current_user => current_user }
+
+.content
+  = render :partial => 'users/flash_messages', :locals => { :flash => flash }
+
+%div.profile-container.container
+  %div.row{ style: 'padding-top: 20px;'}
+    %div.profile-side-wrapper.col-2
+      %table
+        %tr
+          %td.profPic{ style: 'max-height: 200px; max-width: 200px; padding-bottom: 10px;'}
+            = image_tag(@user.image.url(:medium), :style => "border-radius: 50%; max-height: 200px; max-width:200px;", class:"img-responsive img-circle", alt: "missing.png")
+
+        %tr.firstName{ style: 'font-size: 18px; text-align: center;' }
+          %td.profileName{ style: 'font-size: 18px; text-align: center;' }
+            %h3 #{@user.first} #{@user.last}
+
+        %tr
+          %td.profileEmail{ style: 'font-size: 14px; text-align: center;' }
+            - if current_user.admin?
+              = @user.email
+              - if @user.code == Code.regular_code
+                = "Standard User"
+              - elsif @user.code == Code.admin_code
+                = "Admin"
+              - else
+                = "Superadmin"
+            - else
+              = "      "
+              = @emailName
+              = image_tag "atSymbol.jpg", :size => "50x50"
+              = @emailHost
+              = image_tag "period.png",  :size => "50x50"
+              = @emailDomain
+
+        %tr
+          %td.socialMedia{ style: 'font-size: 2.5rem; text-align: center;' }
+            - if @user.facebook && !@user.facebook.empty?
+              %a.contact.fb{:target => "_blank", :href => "https://www.#{@user.facebook}"}
+                %i.fab.fa-lg.fa-facebook-square
+            - else
+              %a.contact.fb.inactive
+                %i.fab.fa-lg.fa-facebook-square
+
+            - if @user.linkedinLstring && !@user.linkedinLstring.empty?
+              %a.contact.linkedin{:target => "_blank", :href => "https://www.#{@user.linkedinLstring}"}
+                %i.fab.fa-lg.fa-linkedin
+            - else
+              %a.contact.linkedin.inactive
+                %i.fab.fa-lg.fa-linkedin
+
+    %div.profile-filler-wrapper.col-1
+    %div.profile-main-wrapper.col-9
+      %table
+        %tr
+          %td.profileMajor{ style: 'font-size: 20px;' }
+            Major: #{@user.major}
+        %tr
+          %td.profileYear{ style: 'font-size: 20px;' }
+            Year:
+            = @user.year
+        %tr
+          %td.profileTeam{ style: 'font-size: 20px;' }
+            Team:
+            = @user.team_name
+        %tr
+          %td.profileSkills{ style: 'font-size: 20px;' }
+            Skills: #{@user.skillset}
+
+
+    %div.profile-button-wrapper.col-16
+      - if current_user.id == @user.id
+        = link_to 'Edit Account', edit_page_path(@user), class: %w[button btn btn-outline-success]
+        &nbsp
+      - if current_user.id == @user.id && current_user.has_a_team
+        = button_to "Leave Team", leave_team_path(@user), class: %w[button btn btn-outline-success], data: { confirm: "Are you sure?" }
+        &nbsp
+      - if current_user.admin?
+        = button_to "Delete User", users_path(@user), class: %w[button btn btn-outline-success], params: {:toDelete => @user.id},data: { confirm: "Are you sure?" }, method: :delete
+        &nbsp
+      - if current_user.code == Code.superadmin_code
+        - if @user.code != Code.admin_code
+          = form_tag(make_admin_path, :method => 'PATCH', class: %w[form form-horizontal]) do
+            = submit_tag "Make Admin", name: nil, class: %w[button btn btn-outline-success], data: { confirm: "Are you sure?" }
+          &nbsp
+        - if @user.code == Code.admin_code
+          = form_tag(make_super_path, :method => 'PATCH', class: %w[form form-horizontal]) do
+            = submit_tag "Make Superadmin", name: nil, class: %w[button btn btn-outline-success], data: { confirm: "Are you sure?" }
+          &nbsp
+        - if @user.code != Code.regular_code
+          = form_tag(make_regular_path, :method => 'PATCH', class: %w[form form-horizontal]) do
+            = submit_tag "Make Regular", name: nil, class: %w[button btn btn-outline-success], data: { confirm: "Are you sure?" }
+          &nbsp
